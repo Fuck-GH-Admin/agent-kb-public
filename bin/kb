@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# kb 命令入口：无需安装，直接可执行
+DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+export PYTHONPATH="$DIR${PYTHONPATH:+:$PYTHONPATH}"
+exec python3 -m kb.cli "$@"

@@ -1,0 +1,12 @@
+[Unit]
+Description=agent-kb 备份（校验 + 保留最近 14 份）+ 回收站老化
+
+[Service]
+Type=oneshot
+User=miku
+Environment=KB_HOME=/home/miku/.kb
+ExecStart=/home/miku/Bot/kb-workspace/kb/bin/kb backup --retention 14 --verify
+# 回收站老化：只清 30 天前的，给误删留足反悔时间
+ExecStart=/home/miku/Bot/kb-workspace/kb/bin/kb gc --commit --empty-trash --older-than 30
+Nice=10
+IOSchedulingClass=idle

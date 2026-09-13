@@ -1,0 +1,12 @@
+[Unit]
+Description=agent-kb 完整性校验（全量 SHA-256 复检）
+Documentation=file:///opt/kb/docs/ARCHITECTURE.md
+
+[Service]
+Type=oneshot
+User=miku
+Environment=KB_HOME=/home/miku/.kb
+ExecStart=/home/miku/Bot/kb-workspace/kb/bin/kb verify --json
+# 校验失败（退出码 1）会在 systemctl status / journalctl 中留痕
+Nice=10
+IOSchedulingClass=idle

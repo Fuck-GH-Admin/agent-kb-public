@@ -1,0 +1,11 @@
+[Unit]
+Description=agent-kb 自动摄取监视目录（增量，未变更文件零 IO）
+
+[Service]
+Type=oneshot
+User=miku
+Environment=KB_HOME=/home/miku/.kb
+# 按需修改监视目录与分区；--once 跑一遍即退出，由 timer 驱动
+ExecStart=/home/miku/Bot/kb-workspace/kb/bin/kb watch %h/inbox --once --collection inbox --review
+Nice=15
+IOSchedulingClass=idle

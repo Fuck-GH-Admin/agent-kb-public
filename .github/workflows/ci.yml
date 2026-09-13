@@ -1,0 +1,29 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.11", "3.12", "3.13"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Install numpy
+        run: pip install numpy
+      - name: Unit tests
+        run: python3 tests/unit/test_unit.py
+      - name: E2E tests (offline tier)
+        env:
+          KB_HOME: /tmp/kb_ci_home
+          KB_TEST_DATA: /tmp/kb_ci_data
+        run: python3 tests/e2e_test.py
+      - name: Syntax check all modules
+        run: python3 -m py_compile kb/*.py kb/cli/*.py tests/*.py

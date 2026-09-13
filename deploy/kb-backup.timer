@@ -1,0 +1,10 @@
+[Unit]
+Description=每日运行 agent-kb 备份与回收站老化
+
+[Timer]
+OnCalendar=daily
+Persistent=true
+RandomizedDelaySec=15m
+
+[Install]
+WantedBy=timers.target
