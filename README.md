@@ -1,5 +1,7 @@
 # Information Substrate
 
+[![](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+
 长期 BOT 系统的信息基础设施子系统：负责**证据、资料、来源、索引、检索、保留和恢复**。
 Knowledge、Memory、Attention 与 Subject Runtime 在它之上形成主体语义；它自己不解释"主体是谁"。
 
